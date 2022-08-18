@@ -3,6 +3,12 @@
 # Inform user of installation
 zenity --info --text="Installing Backboard..."
 
+if [ -d "$HOME/.local/share/backboard" ];
+then
+	echo -e "Backboard is already installed!\n"
+	zenity --info --text="Backboard is already installed!"
+	exit
+
 # Clone repository
 echo Cloning Backboard repository...
 zenity --info --text="Cloning Backboard repository..."
