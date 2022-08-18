@@ -9,7 +9,7 @@ APP_VERSION = "1.0"
 
 
 # Imports
-import gi
+import gi, os, subprocess, sys
 gi.require_version('Gdk', '3.0')
 gi.require_version('Gtk', '3.0')
 gi.require_version('GdkPixbuf', '2.0')
@@ -27,6 +27,9 @@ class Main:
     # Initializes main class.
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        # check for the needed dependencies
+        self.check_dependencies()
 
         # create Gtk builder
         self.builder = Gtk.Builder()
@@ -50,6 +53,44 @@ class Main:
         Gtk.main_quit() # quit Gtk
 
 
+    # Returns true if a command is available on the system.
+    def command_exists(self, command: str) -> bool:
+        try:
+            result = not subprocess.run(["bash", "-c", "command -v " + command], capture_output=True).stdout.decode("UTF-8") == ""
+        except Exception as e:
+            print(str(e) + "\nERROR!: Bash could not determine if the specified command exists: \"" + command + "\".", ' ', '\n', sys.stderr)
+            sys.exit(-2) # could not determine if command exists; exit with code -2
+        return result
+
+
+    # Ensures all required dependencies are installed
+    def check_dependencies(self):
+
+
+        # check for base64
+        if not self.command_exists("base64"):
+            error_message = "Fatal Error: The \"base64\" command is not accessible! Cannot continue."
+            print(error_message, ' ', '\n', file = sys.stderr)
+            self.create_simple_message_dialog(error_message, "Backboard - Fatal Error")
+            sys.exit(1) # could not find base64 command; exit with code 1
+
+
+        # check for Decky
+        if not os.path.isdir(os.path.expanduser("~") + "/homebrew"):
+            error_message = "Fatal Error: Decky does not appear to be installed! Please install it before continuing."
+            print(error_message, ' ', '\n', file = sys.stderr)
+            self.create_simple_message_dialog(error_message, "Backboard - Fatal Error")
+            sys.exit(2) # could not find Decky directory; exit with code 2
+
+
+        # check for CSS Loader
+        if not os.path.isdir(os.path.expanduser("~") + "/homebrew/plugins/SDH-CssLoader"):
+            error_message = "Fatal Error: CSS Loader does not appear to be installed! Please install it before continuing."
+            print(error_message, ' ', '\n', file = sys.stderr)
+            self.create_simple_message_dialog(error_message, "Backboard - Fatal Error")
+            sys.exit(3) # could not find CSS Loader directory; exit with code 3
+
+
     # Will create a simple message dialog.
     def create_simple_message_dialog(self, text: str, title = "Backboard", yesno = False, window = None):
         # create dialog and set a few settings
@@ -70,6 +111,37 @@ class Main:
     # Called when the about button is clicked
     def on_about_button_clicked(self, object, data = None):
         self.create_simple_message_dialog("Backboard was created by Nicholas Girga")
+
+
+    # Called when the create button is clicked
+    def on_create_button_clicked(self, object, data = None):
+        # get theme data from widgets
+        theme_name = self.builder.get_object("theme_name").get_text()
+        author = self.builder.get_object("author").get_text()
+        version = self.builder.get_object("version").get_text()
+        image = self.builder.get_object("image").get_filename()
+
+        # fill theme_name if empty
+        if theme_name == "":
+            theme_name = "My Theme"
+
+        # fill author if empty
+        if author == "":
+            author = "Me"
+
+        # fill version if empty
+        if version == "":
+            version = "v1.0"
+
+        # warn user if image is empty
+        if image == "" or image == None:
+            warning_message = "You must select an image before creating the theme!"
+            print(warning_message)
+            self.create_simple_message_dialog(warning_message, "Backboard - Warning")
+            return
+
+        # create theme
+        self.create_simple_message_dialog("Name: " + theme_name + "; Author: " + author + "; Version: " + version + "; Image: " + image) # TEMP
 
 
 # Start.

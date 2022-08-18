@@ -53,7 +53,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry">
+              <object class="GtkEntry" id="theme_name">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="placeholder-text" translatable="yes">My Theme</property>
@@ -90,10 +90,10 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry">
+              <object class="GtkEntry" id="author">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                <property name="placeholder-text" translatable="yes">Nicholas Girga</property>
+                <property name="placeholder-text" translatable="yes">Me</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -127,7 +127,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry">
+              <object class="GtkEntry" id="version">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="placeholder-text" translatable="yes">v1.0</property>
@@ -163,7 +163,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkFileChooserButton">
+              <object class="GtkFileChooserButton" id="image">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="filter">image_filter</property>
@@ -195,6 +195,7 @@
                 <property name="receives-default">True</property>
                 <property name="image">create_icon</property>
                 <property name="always-show-image">True</property>
+                <signal name="clicked" handler="on_create_button_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
