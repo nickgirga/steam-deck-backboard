@@ -22,7 +22,7 @@ zenity --info --text="Installing Backboard..."
 # Clone repository
 echo Cloning Backboard repository...
 zenity --info --text="Cloning Backboard repository..."
-git clone https://gitlab.com/nickgirga/steam-deck-backboard.git "$HOME/.local/share/backboard"
+git clone --recurse-submodules https://gitlab.com/nickgirga/steam-deck-backboard.git "$HOME/.local/share/backboard"
 
 # Check the exit code of git
 git_exit_code="$?"
