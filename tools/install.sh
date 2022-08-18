@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Inform user of installation
-zenity --info --text="Installing Backboard..."
-
 # Check if Backboard is already installed
 if [ -d "$HOME/.local/share/backboard" ];
 then
@@ -10,6 +7,9 @@ then
 	zenity --info --text="Backboard is already installed!"
 	exit
 fi
+
+# Inform user of installation
+zenity --info --text="Installing Backboard..."
 
 # Clone repository
 echo Cloning Backboard repository...
@@ -21,7 +21,7 @@ git_exit_code="$?"
 if ! [[ "$git_exit_code" == "0" ]];
 then
 	echo -e "ERROR!: Something happened while cloning the repository (exit code $git_exit_code)!\n"
-	zenity --info --text="ERROR!: Something happened while cloning the repository (exit code $git_exit_code)!"
+	zenity --error --text="ERROR!: Something happened while cloning the repository (exit code $git_exit_code)!"
 	exit 1
 fi
 
@@ -36,7 +36,7 @@ ln_exit_code="$?"
 if ! [[ "$ln_exit_code" == "0" ]];
 then
 	echo -e "ERROR!: Something happened while creating a symbolic link for the applications directory (exit code $ln_exit_code)!\n"
-	zenity --info --text="ERROR!: Something happened while creating a symbolic link for the applications directory (exit code $ln_exit_code)!"
+	zenity --error --text="ERROR!: Something happened while creating a symbolic link for the applications directory (exit code $ln_exit_code)!"
 	exit 2
 fi
 
