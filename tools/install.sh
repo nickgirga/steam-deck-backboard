@@ -8,6 +8,14 @@ then
 	exit
 fi
 
+# Ask user if they would like to install
+zenity --question --text="Are you sure you would like to install Backboard?"
+if ! [[ "$?" == "0" ]];
+then
+	echo -e "Exiting (user request)...\n"
+	exit
+fi
+
 # Inform user of installation
 zenity --info --text="Installing Backboard..."
 

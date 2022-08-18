@@ -8,6 +8,14 @@ then
 	exit
 fi
 
+# Ask user if they would like to uninstall
+zenity --question --text="Are you sure you would like to uninstall Backboard?"
+if ! [[ "$?" == "0" ]];
+then
+	echo -e "Exiting (user request)...\n"
+	exit
+fi
+
 # Inform user of uninstallation
 zenity --info --text="Uninstalling Backboard..."
 
