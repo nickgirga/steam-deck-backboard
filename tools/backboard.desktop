@@ -1,0 +1,19 @@
+[Desktop Entry]
+Comment[en_US]=
+Comment=
+Exec=/home/deck/.local/share/backboard/backboard
+GenericName[en_US]=Easily create new background themes for the Home page
+GenericName=Easily create new background themes for the Home page
+Icon=steamdeck-gaming-return
+MimeType=
+Name[en_US]=Backboard
+Name=Backboard
+Path=/home/deck/.local/share/backboard
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
