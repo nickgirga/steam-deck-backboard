@@ -1,0 +1,85 @@
+#!/usr/bin/env python3
+# backboard
+# Copyright (c) 2022 Nicholas Girga
+# Creates a simple background theme for the Home page on the Steam Deck with CSS Loader
+
+
+# The current version of this app.
+APP_VERSION = "1.0"
+
+
+# Imports
+import gi
+gi.require_version('Gdk', '3.0')
+gi.require_version('Gtk', '3.0')
+gi.require_version('GdkPixbuf', '2.0')
+from gi.repository import Gdk, GdkPixbuf, Gio, Gtk
+
+
+# Define main class.
+class Main:
+
+
+    # Allow usage of APP_VERSION variable
+    global APP_VERSION
+
+
+    # Initializes main class.
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        # create Gtk builder
+        self.builder = Gtk.Builder()
+
+        # define path to UI template
+        self.gladefile = "./backboard.ui"
+
+        # configure builder and connect signals
+        self.builder.add_from_file(self.gladefile)
+        self.builder.connect_signals(self)
+
+        # get main window object
+        self.window = self.builder.get_object("window")
+
+        # present main window
+        self.window.show_all()
+
+
+    # Called when the main window is destroyed.
+    def on_window_destroy(self, object, data = None):
+        Gtk.main_quit() # quit Gtk
+
+
+    # Will create a simple message dialog.
+    def create_simple_message_dialog(self, text: str, title = "Backboard", yesno = False, window = None):
+        # create dialog and set a few settings
+        message = Gtk.MessageDialog(parent = window, flags = 0, message_type = Gtk.MessageType.INFO, buttons = Gtk.ButtonsType.YES_NO if yesno else Gtk.ButtonsType.OK, text = text)
+        message.set_title(title)
+        message.set_keep_above(True)
+        message.props.urgency_hint = True
+
+        #  set window icon
+        message.set_icon_name("window")
+
+        # run dialog, destory it when it exits, and return the response
+        response = message.run()
+        message.destroy()
+        return response
+
+
+    # Called when the about button is clicked
+    def on_about_button_clicked(self, object, data = None):
+        self.create_simple_message_dialog("Backboard was created by Nicholas Girga")
+
+
+# Start.
+if __name__ == "__main__":
+    try:
+        main = Main() # create new instance of main class
+        Gtk.main() # Initialize Gtk
+    except KeyboardInterrupt:
+        print("Quitting (user request)...")
+        sys.exit(0) # exit on KeyboardInterrupt
+    except Exception as e:
+        print(str(e))
+        sys.exit(-1) # main instance interrupted; exit with code -1
