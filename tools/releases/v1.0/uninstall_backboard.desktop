@@ -1,0 +1,19 @@
+[Desktop Entry]
+Comment[en_US]=
+Comment=
+Exec=bash -c "$(curl -fsSL https://gitlab.com/nickgirga/steam-deck-backboard/-/raw/main/tools/releases/v1.0/uninstall.sh)"
+GenericName[en_US]=Uninstalls Backboard v1.0 for Steam Deck
+GenericName=Uninstalls Backboard v1.0 for Steam Deck
+Icon=plasmadiscover
+MimeType=
+Name[en_US]=Uninstall Backboard v1.0
+Name=Uninstall Backboard v1.0
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
