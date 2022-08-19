@@ -25,6 +25,7 @@ Need help? Looking to [uninstall](https://gitlab.com/nickgirga/steam-deck-backbo
  - [Python](https://www.python.org)
  - [GTK](https://www.gtk.org)
  - [PyGObject](https://gitlab.gnome.org/GNOME/pygobject)
+ - [Zenity](https://gitlab.gnome.org/GNOME/zenity)
  - [SteamOS](https://store.steampowered.com/steamos)
  - [Steam Deck](https://store.steampowered.com/steamdeck)
  - [Linux](https://github.com/torvalds/linux)
