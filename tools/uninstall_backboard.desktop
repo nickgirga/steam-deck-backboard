@@ -2,12 +2,12 @@
 Comment[en_US]=
 Comment=
 Exec=bash -c "$(curl -fsSL https://gitlab.com/nickgirga/steam-deck-backboard/-/raw/main/tools/uninstall.sh)"
-GenericName[en_US]=Installs Backboard for Steam Deck
-GenericName=Installs Backboard for Steam Deck
+GenericName[en_US]=Uninstalls Backboard for Steam Deck
+GenericName=Uninstalls Backboard for Steam Deck
 Icon=plasmadiscover
 MimeType=
-Name[en_US]=Install Backboard
-Name=Install Backboard
+Name[en_US]=Uninstall Backboard
+Name=Uninstall Backboard
 Path=
 StartupNotify=true
 Terminal=false
