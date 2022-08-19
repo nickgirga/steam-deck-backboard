@@ -17,3 +17,14 @@ Need help? Check the [Wiki](https://gitlab.com/nickgirga/steam-deck-backboard/-/
 <img src=".screenshots/desktop_mode.jpg" width="512">
 <img src=".screenshots/theme_selection.jpg" width="800">
 <img src=".screenshots/gaming_mode.jpg" width="800">
+
+# Thanks to These Projects and Their Contributors
+ - [Decky](https://github.com/SteamDeckHomebrew/decky-loader)
+ - [CSS Loader](https://github.com/suchmememanyskill/SDH-CssLoader)
+ - [Steam Deck Themes](https://github.com/suchmememanyskill/Steam-Deck-Themes)
+ - [Python](https://www.python.org)
+ - [GTK](https://www.gtk.org)
+ - [PyGObject](https://gitlab.gnome.org/GNOME/pygobject)
+ - [SteamOS](https://store.steampowered.com/steamos)
+ - [Steam Deck](https://store.steampowered.com/steamdeck)
+ - [Linux](https://github.com/torvalds/linux)
