@@ -11,7 +11,7 @@ Note: you must install [Decky](https://github.com/SteamDeckHomebrew/decky-loader
 
 Note: The installer requires an internet connection.
 
-Need help? Check the [Wiki](https://gitlab.com/nickgirga/steam-deck-backboard/-/wikis/Home) for more information!
+Need help? Looking to [uninstall](https://gitlab.com/nickgirga/steam-deck-backboard/-/wikis/Home#uninstalling-backboard)? Check the [Wiki](https://gitlab.com/nickgirga/steam-deck-backboard/-/wikis/Home) for more information!
 
 ## Screenshots
 <img src=".screenshots/desktop_mode.jpg" width="512">
