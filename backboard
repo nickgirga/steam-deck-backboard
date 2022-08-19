@@ -5,7 +5,7 @@
 
 
 # Imports
-import gi, os, shutil, subprocess, sys
+import gi, os, shutil, subprocess, sys, webbrowser
 gi.require_version('Gdk', '3.0')
 gi.require_version('Gtk', '3.0')
 gi.require_version('GdkPixbuf', '2.0')
@@ -18,7 +18,7 @@ class Main:
 
 
     # The current version of this app.
-    APP_VERSION = "1.0"
+    APP_VERSION = "v1.0"
 
 
     # Initializes main class.
@@ -106,7 +106,36 @@ class Main:
 
     # Called when the about button is clicked
     def on_about_button_clicked(self, object, data = None):
-        self.create_simple_message_dialog("Backboard was created by Nicholas Girga")
+        # create about dialog
+        about = Gtk.AboutDialog()
+
+        # set app information in about dialog
+        about.set_program_name("Backboard")
+        about.set_version(self.APP_VERSION)
+        about.set_property("copyright", "Copyright ©️ 2022 Nicholas Girga")
+        about.set_property("authors", ["Nicholas Girga"])
+        about.set_comments("Create basic background themes for the Steam Deck")
+        about.set_website("https://gitlab.com/nickgirga/steam-deck-backboard")
+        about.set_website_label("gitlab.com/nickgirga/steam-deck-backboard")
+
+        # set license in about dialog
+        about.set_license_type(Gtk.License.MIT_X11)
+
+        # set logo in about dialog
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file("./logo/backboard_128x.png")
+        about.set_logo(pixbuf)
+
+        # set icon in about dialog
+        about.set_icon_from_file("./logo/backboard_256x.png")
+
+        # run and destroy about dialog
+        about.run()
+        about.destroy()
+
+
+    # Called when the help button is clicked.
+    def on_help_button_clicked(self, object, data = None):
+        webbrowser.open_new_tab("https://gitlab.com/nickgirga/steam-deck-backboard/-/wikis/Home") # open project Wiki in new tab of browser
 
 
     # Called when the create button is clicked
