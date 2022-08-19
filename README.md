@@ -7,7 +7,7 @@ This tool is only intended to be used directly on the Steam Deck while in Deskto
 
 Note: you must install [Decky](https://github.com/SteamDeckHomebrew/decky-loader#installation) and [CSS Loader](https://github.com/suchmememanyskill/SDH-CssLoader#installation).
 
-### [Install Backboard!](https://gitlab.com/nickgirga/steam-deck-backboard/-/raw/main/tools/install_backboard.desktop?inline=false)
+### [Install Backboard!](https://gitlab.com/nickgirga/steam-deck-backboard/-/raw/main/tools/releases/v1.0/install_backboard.desktop?inline=false)
 
 Note: The installer requires an internet connection.
 
