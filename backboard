@@ -4,6 +4,10 @@
 # Creates a simple background theme for the Home page on the Steam Deck with CSS Loader
 
 
+# The current version of this app.
+APP_VERSION = "v1.0"
+
+
 # Imports
 import gi, os, shutil, subprocess, sys, webbrowser
 gi.require_version('Gdk', '3.0')
@@ -17,8 +21,8 @@ from pathlib import Path
 class Main:
 
 
-    # The current version of this app.
-    APP_VERSION = "v1.0"
+    # Allow usage of APP_VERSION variable
+    global APP_VERSION
 
 
     # Initializes main class.
@@ -111,7 +115,7 @@ class Main:
 
         # set app information in about dialog
         about.set_program_name("Backboard")
-        about.set_version(self.APP_VERSION)
+        about.set_version(APP_VERSION)
         about.set_property("copyright", "Copyright ©️ 2022 Nicholas Girga")
         about.set_property("authors", ["Nicholas Girga"])
         about.set_comments("Create basic background themes for the Steam Deck")

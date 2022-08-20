@@ -48,6 +48,7 @@ echo Cloning Backboard repository...
 zenity --info --ellipsize --text="Cloning Backboard repository. This may take a while..."
 git clone --recurse-submodules https://gitlab.com/nickgirga/steam-deck-backboard.git "$HOME/.local/share/backboard"
 
+
 # Check the exit code of git
 git_exit_code="$?"
 if ! [[ "$git_exit_code" == "0" ]];
@@ -57,8 +58,17 @@ then
 	exit 4
 fi
 
-echo -e "Finished cloning repository!\n"
-zenity --info --ellipsize --text="Finished cloning repository!"
+# Find current commit hash from repository
+TEMP_GIT_DIR="$GIT_DIR"
+GIT_DIR="$HOME/.local/share/backboard"
+version="`printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"`"
+GIT_DIR="$TEMP_GIT_DIR"
+
+# Update APP_VERSION with current commit hash
+sed -i "8s/.*/APP_VERSION = \"git-$version\"/"
+
+echo -e "Finished cloning repository at revision $version!\n"
+zenity --info --ellipsize --text="Finished cloning repository at revision $version!"
 
 # Symlink desktop file to applications directory
 ln -s "$HOME/.local/share/backboard/tools/backboard.desktop" "$HOME/.local/share/applications/backboard.desktop"
@@ -74,4 +84,4 @@ fi
 
 echo -e "Created symbolic link for applications directory!\n\nDone!\n"
 zenity --info --ellipsize --text="Created symbolic link for applications directory!"
-zenity --info --ellipsize --text="Finished installing Backboard!"
+zenity --info --ellipsize --text="Finished installing Backboard revision $version!"
