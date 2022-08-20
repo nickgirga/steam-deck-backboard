@@ -59,13 +59,10 @@ then
 fi
 
 # Find current commit hash from repository
-TEMP_GIT_DIR="$GIT_DIR"
-GIT_DIR="$HOME/.local/share/backboard"
-version="`printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"`"
-GIT_DIR="$TEMP_GIT_DIR"
+version="`printf "r%s.%s" "$(git --git-dir="$HOME/.local/share/backboard/.git" rev-list --count HEAD)" "$(git --git-dir="$HOME/.local/share/backboard/.git" rev-parse --short HEAD)"`"
 
 # Update APP_VERSION with current commit hash
-sed -i "8s/.*/APP_VERSION = \"git-$version\"/"
+sed -i "8s/.*/APP_VERSION = \"git-$version\"/" "$HOME/.local/share/backboard/backboard"
 
 echo -e "Finished cloning repository at revision $version!\n"
 zenity --info --ellipsize --text="Finished cloning repository at revision $version!"
