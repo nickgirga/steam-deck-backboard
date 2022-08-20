@@ -74,24 +74,24 @@ class Main:
 
         # check for Decky
         if not os.path.isdir(os.path.expanduser("~") + "/homebrew"):
-            error_message = "Fatal Error: Decky does not appear to be installed! Please install it before continuing."
-            print(error_message, ' ', '\n', file = sys.stderr)
-            self.create_simple_message_dialog(error_message, "Backboard - Fatal Error")
+            print("Fatal Error: Decky does not appear to be installed! Please install it before continuing.", ' ', '\n', file = sys.stderr)
+            self.create_simple_message_dialog("Fatal Error: Decky does not appear to be installed! Please <a href=\"https://github.com/SteamDeckHomebrew/decky-loader#installation\">install it</a> before continuing.", "Backboard - Fatal Error", True)
             sys.exit(2) # could not find Decky directory; exit with code 2
 
         # check for CSS Loader
         if not os.path.isdir(os.path.expanduser("~") + "/homebrew/plugins/SDH-CssLoader"):
-            error_message = "Fatal Error: CSS Loader does not appear to be installed! Please install it before continuing."
-            print(error_message, ' ', '\n', file = sys.stderr)
-            self.create_simple_message_dialog(error_message, "Backboard - Fatal Error")
+            print("Fatal Error: CSS Loader does not appear to be installed! Please install it before continuing.", ' ', '\n', file = sys.stderr)
+            self.create_simple_message_dialog("Fatal Error: CSS Loader does not appear to be installed! Please <a href=\"https://github.com/suchmememanyskill/SDH-CssLoader#installation\">install it</a> before continuing.", "Backboard - Fatal Error", True)
             sys.exit(3) # could not find CSS Loader directory; exit with code 3
 
 
     # Will create a simple message dialog.
-    def create_simple_message_dialog(self, text: str, title = "Backboard", yesno = False, window = None):
+    def create_simple_message_dialog(self, text: str, title = "Backboard", markup = False, yesno = False, window = None):
         # create dialog and set a few settings
         message = Gtk.MessageDialog(parent = window, flags = 0, message_type = Gtk.MessageType.INFO, buttons = Gtk.ButtonsType.YES_NO if yesno else Gtk.ButtonsType.OK, text = text)
         message.set_title(title)
+        if markup:
+            message.set_markup(text)
         message.set_keep_above(True)
         message.props.urgency_hint = True
 
